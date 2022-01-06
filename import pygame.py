@@ -1,11 +1,20 @@
 import os
 import sys
 import pygame
+from pygame import surface
 
 pygame.init()
 FPS = 50
+#размеры самого экрана
 WIDTH = 800
 HEIGHT = 700
+#размеры поля игры
+p_widht = 300
+p_height = 600
+#верхние левые точки
+top_left_x = (WIDTH - p_widht) // 2
+top_left_y = HEIGHT - p_height
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
@@ -32,14 +41,20 @@ def terminate():
 
 
 def start_screen():
-    intro_text = ["ТЕТРИС", "",
+    pygame.font.init()
+    fon = pygame.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
+    screen.blit(fon, (0, 0))
+    font = pygame.font.SysFont('comicsans', 60)
+    name1 = font.render('ТЕТРИС', 1, ('white'))
+    screen.blit(name1, (top_left_x + p_widht / 2 - (name1.get_width() / 2), 30))
+    name2 = font.render('Играть', 2, ('white'))
+    screen.blit(name2, (top_left_x + p_widht / 2 - (name2.get_width() / 2), 150))
+    intro_text = ["ЗАСТАВКА", "",
                   "Правила игры",
                   "Если в правилах несколько строк,",
                   "приходится выводить их построчно"]
 
-    fon = pygame.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
-    screen.blit(fon, (0, 0))
-    font = pygame.font.Font(None, 60)
+    font2 = pygame.font.Font(None, 40)
     text_coord = 50
     for line in intro_text:
         string_rendered = font.render(line, 1, pygame.Color('white'))
