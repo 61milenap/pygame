@@ -46,18 +46,19 @@ def start_screen():
     screen.blit(fon, (0, 0))
     font = pygame.font.SysFont('comicsans', 60)
     name1 = font.render('ТЕТРИС', 1, ('white'))
-    screen.blit(name1, (top_left_x + p_widht / 2 - (name1.get_width() / 2), 30))
-    name2 = font.render('Играть', 2, ('white'))
-    screen.blit(name2, (top_left_x + p_widht / 2 - (name2.get_width() / 2), 150))
-    intro_text = ["ЗАСТАВКА", "",
-                  "Правила игры",
-                  "Если в правилах несколько строк,",
-                  "приходится выводить их построчно"]
+    screen.blit(name1, (top_left_x + p_widht / 2 - (name1.get_width() / 2), 20))
+    font3 = pygame.font.Font(None, 80)
+    name2 = font3.render('Играть', 2, ('yellow'))
+    screen.blit(name2, (top_left_x + p_widht / 2 - (name2.get_width() / 2), HEIGHT // 2 - 50))
+    intro_text = ["Цель игры",
+                  "заполнить как можно больше горизонтальных линий",
+                  "на игровом поле, размещая опускающиеся фигуры",
+                  "и не оставляя пустых пространств между ними."]
 
     font2 = pygame.font.Font(None, 40)
-    text_coord = 50
+    text_coord = HEIGHT // 1.4
     for line in intro_text:
-        string_rendered = font.render(line, 1, pygame.Color('white'))
+        string_rendered = font2.render(line, 1, pygame.Color('black'))
         intro_rect = string_rendered.get_rect()
         text_coord += 10
         intro_rect.top = text_coord
@@ -75,13 +76,113 @@ def start_screen():
         pygame.display.flip()
         clock.tick(FPS)
 
+Z = [['.....',
+      '.....',
+      '.00..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '.0...',
+      '.....']]
+S = [['.....',
+      '......',
+      '..00..',
+      '.00...',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..00.',
+      '...0.',
+      '.....']]
+L = [['.....',
+      '...0.',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '.0...',
+      '.....'],
+     ['.....',
+      '.00..',
+      '..0..',
+      '..0..',
+      '.....']]
+O = [['.....',
+      '.....',
+      '.00..',
+      '.00..',
+      '.....']]
+I = [['..0..',
+      '..0..',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '0000.',
+      '.....',
+      '.....',
+      '.....']]
+J = [['.....',
+      '.0...',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..00.',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '...0.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '.00..',
+      '.....']]
+T = [['.....',
+      '..0..',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..00.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '..0..',
+      '.....']]
+blocks = [S, T, I, J, O, Z, L]
+colors_blocks = ['blue', 'orange', 'red', 'purple', 'yellow', 'aqua', 'green']
+
+
 start_screen()
+def draw(surface)
 
 class Board:
-        def __init__(self, width, height):
-            self.width = width
-            self.height = height
-            self.board = [[0] * width for _ in range(height)]
+        def __init__(self, p_width, p_height):
+            self.p_width = p_width
+            self.p_height = p_height
+            self.board = [[0] * p_width for _ in range(p_height)]
             self.left = 10
             self.top = 10
             self.cell_size = 30
@@ -92,8 +193,8 @@ class Board:
             self.cell_size = cell_size
 
         def render(self, screen):
-            for x in range(self.width):
-                for y in range(self.height):
+            for x in range(self.p_width):
+                for y in range(self.p_height):
                     pygame.draw.rect(screen, (255, 255, 255), (
                         x * self.cell_size + self.left, y * self.cell_size + self.top, self.cell_size, self.cell_size),
                                      1)
