@@ -9,15 +9,20 @@ FPS = 50
 WIDTH = 800
 HEIGHT = 700
 #размеры поля игры
-p_widht = 300
-p_height = 600
-#верхние левые точки
-top_left_x = (WIDTH - p_widht) // 2
-top_left_y = HEIGHT - p_height
+color_blocks = ['red', 'orange', 'yellow','green', 'blue', 'indigo', 'purple']
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
+class blocks:
+    blocks = [ [ [1, 2, 6, 10], 
+                [5, 6, 7, 9], 
+                [2, 6, 10, 11], 
+                [3, 5, 6, 7] ],
+               [ [6, 7, 9, 10],
+                 [1, 5, 6, 10]],
+
+    ]
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
 
@@ -44,18 +49,18 @@ def start_screen():
     pygame.font.init()
     fon = pygame.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
     screen.blit(fon, (0, 0))
-    font = pygame.font.SysFont('comicsans', 60)
+    font = pygame.font.SysFont('georgia', 60)
     name1 = font.render('ТЕТРИС', 1, ('white'))
     screen.blit(name1, (top_left_x + p_widht / 2 - (name1.get_width() / 2), 20))
-    font3 = pygame.font.Font(None, 80)
+    font3 = pygame.font.SysFont('cambria', 80)
     name2 = font3.render('Играть', 2, ('yellow'))
     screen.blit(name2, (top_left_x + p_widht / 2 - (name2.get_width() / 2), HEIGHT // 2 - 50))
-    intro_text = ["Цель игры",
+    intro_text = ["Цель игры:",
                   "заполнить как можно больше горизонтальных линий",
                   "на игровом поле, размещая опускающиеся фигуры",
                   "и не оставляя пустых пространств между ними."]
 
-    font2 = pygame.font.Font(None, 40)
+    font2 = pygame.font.SysFont('impact', 30)
     text_coord = HEIGHT // 1.4
     for line in intro_text:
         string_rendered = font2.render(line, 1, pygame.Color('black'))
@@ -76,136 +81,3 @@ def start_screen():
         pygame.display.flip()
         clock.tick(FPS)
 
-Z = [['.....',
-      '.....',
-      '.00..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '.0...',
-      '.....']]
-S = [['.....',
-      '......',
-      '..00..',
-      '.00...',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '...0.',
-      '.....']]
-L = [['.....',
-      '...0.',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '..00.',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '.0...',
-      '.....'],
-     ['.....',
-      '.00..',
-      '..0..',
-      '..0..',
-      '.....']]
-O = [['.....',
-      '.....',
-      '.00..',
-      '.00..',
-      '.....']]
-I = [['..0..',
-      '..0..',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '0000.',
-      '.....',
-      '.....',
-      '.....']]
-J = [['.....',
-      '.0...',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..00.',
-      '..0..',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '...0.',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..0..',
-      '.00..',
-      '.....']]
-T = [['.....',
-      '..0..',
-      '.000.',
-      '.....',
-      '.....'],
-     ['.....',
-      '..0..',
-      '..00.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '.....',
-      '.000.',
-      '..0..',
-      '.....'],
-     ['.....',
-      '..0..',
-      '.00..',
-      '..0..',
-      '.....']]
-blocks = [S, T, I, J, O, Z, L]
-colors_blocks = ['blue', 'orange', 'red', 'purple', 'yellow', 'aqua', 'green']
-
-
-start_screen()
-def draw(surface)
-
-class Board:
-        def __init__(self, p_width, p_height):
-            self.p_width = p_width
-            self.p_height = p_height
-            self.board = [[0] * p_width for _ in range(p_height)]
-            self.left = 10
-            self.top = 10
-            self.cell_size = 30
-
-        def set_view(self, left, top, cell_size):
-            self.left = left
-            self.top = top
-            self.cell_size = cell_size
-
-        def render(self, screen):
-            for x in range(self.p_width):
-                for y in range(self.p_height):
-                    pygame.draw.rect(screen, (255, 255, 255), (
-                        x * self.cell_size + self.left, y * self.cell_size + self.top, self.cell_size, self.cell_size),
-                                     1)
-
-
-board = Board(10, 20)
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    screen.fill((0, 0, 0))
-    board.render(screen)
-    pygame.display.flip() 
