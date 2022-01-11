@@ -238,9 +238,12 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 game.__init__(20, 10)
 
-    if event.type == pygame.KEYUP:
+        if event.type == pygame.KEYUP:
             if event.key == pygame.K_DOWN:
                 pressing_down = False
+        
+        if event.type == pygame.QUIT:
+                terminate()
 
     screen.fill('black')
 
