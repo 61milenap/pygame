@@ -18,7 +18,7 @@ p_width = 300
 top_left_x = (WIDTH - p_width) // 2
 top_left_y = HEIGHT - p_height
 #цвета блоков
-colors = [(255, 0, 0), (255, 125, 0), (255, 255, 0),
+colors_block = [(255, 0, 0), (255, 125, 0), (255, 255, 0),
           (0, 255, 0), (175, 214, 255), (0, 0, 255),
           (170, 0, 255)]
 
@@ -108,7 +108,7 @@ class Blocks:
         self.x = x
         self.y = y
         self.type = random.randint(0, len(self.blocks) - 1)
-        self.color = random.randint(1, len(colors) - 1)
+        self.color = random.randint(1, len(colors_block) - 1)
         self.rotation = 0
 
     def image(self):
@@ -259,7 +259,7 @@ while running:
             for j in range(4):
                 p = i * 4 + j
                 if p in game.block.image():
-                    pygame.draw.rect(screen, colors[game.block.color],
+                    pygame.draw.rect(screen, colors_block[game.block.color],
                                      [game.x + game.cell_size * (j + game.block.x) + 1,
                                       game.y + game.cell_size * (i + game.block.y) + 1,
                                       game.cell_size - 2, game.cell_size - 2])
