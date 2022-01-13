@@ -12,8 +12,8 @@ WIDTH = 400
 HEIGHT = 500
 size = (WIDTH, HEIGHT)
 #размеры поля
-p_height = 600
-p_width = 300
+p_height = 400
+p_width = 200
 #крайние левые точки
 top_left_x = (WIDTH - p_width) // 2
 top_left_y = HEIGHT - p_height
@@ -60,14 +60,14 @@ def start_screen():
                   "заполнить как можно больше горизонтальных линий",
                   "на игровом поле, размещая опускающиеся фигуры",
                   "и не оставляя пустых пространств между ними."]
-    font2 = pygame.font.SysFont('impact', 30)
+    font2 = pygame.font.SysFont('impact', 16)
     text_coord = HEIGHT // 1.4
     for line in intro_text:
         string_rendered = font2.render(line, 1, pygame.Color('black'))
         intro_rect = string_rendered.get_rect()
         text_coord += 10
         intro_rect.top = text_coord
-        intro_rect.x = 10
+        intro_rect.x = 5
         text_coord += intro_rect.height
         screen.blit(string_rendered, intro_rect)
     while True:
@@ -122,9 +122,6 @@ class Tetris:
     level = 2
     score = 0
     poss = "НАЧАТЬ"
-    field = []
-    height = 0
-    width = 0
     x = 100
     y = 60
     cell_size = 20
@@ -251,7 +248,7 @@ while running:
         for j in range(game.width):
             pygame.draw.rect(screen, 'white', [game.x + game.cell_size * j, game.y + game.cell_size * i, game.cell_size, game.cell_size], 1)
             if game.board[i][j] > 0:
-                pygame.draw.rect(screen, colors[game.board[i][j]],
+                pygame.draw.rect(screen, colors_block[game.board[i][j]],
                                  [game.x + game.cell_size * j + 1, game.y + game.cell_size * i + 1, game.cell_size - 2, game.cell_size - 1])
 
     if game.block is not None:
