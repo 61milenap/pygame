@@ -1,5 +1,6 @@
 from blocks import Blocks
 
+
 class Tetris:
     level = 2
     score = 0
@@ -66,7 +67,8 @@ class Tetris:
         for i in range(4):
             for j in range(4):
                 if i * 4 + j in self.block.image():
-                    self.board[i + self.block.y][j + self.block.x] = self.block.color
+                    self.board[i + self.block.y][j +
+                                                 self.block.x] = self.block.color
         self.break_lines()
         self.new_block()
         if self.intersects():

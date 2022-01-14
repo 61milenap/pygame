@@ -3,6 +3,8 @@ import sys
 import pygame
 from tetris import Tetris
 
+pygame.mixer.music.load("sounds/tetris.mp3")
+
 pygame.display.set_caption("Тетрис")
 pygame.init()
 FPS = 25
@@ -17,6 +19,8 @@ p_width = 200
 # крайние левые точки
 top_left_x = (WIDTH - p_width) // 2
 top_left_y = HEIGHT - p_height
+
+
 # цвета блоков
 colors_block = [(255, 0, 0), (255, 125, 0), (255, 255, 0),
                 (0, 255, 0), (175, 214, 255), (0, 0, 255),
@@ -97,16 +101,7 @@ def start_screen():
 
 start_screen()
 
-pygame.mixer.music.load("sounds/tetris.mp3")
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            exit()
 
-    clock.tick(FPS)
-    
-
-pygame.mixer.music.play(-1)
 running = True
 game = Tetris(20, 10)
 counter = 0
