@@ -25,6 +25,15 @@ colors_block = [(255, 0, 0), (255, 125, 0), (255, 255, 0),
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit()
+
+    clock.tick(FPS)
+
+pygame.mixer.music.play(-1)
+
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('data', name)
