@@ -158,8 +158,10 @@ while running:
 
     font = pygame.font.SysFont('cambria', 25, True, False)
     font1 = pygame.font.SysFont('cambria', 35, True, False)
+    font2 = pygame.font.SysFont('cambria', 25, False, True)
 
     text = font.render("СЧЁТ " + str(game.score), True, 'red')
+    text2 = font2.render("СЧЁ " + str(game.score), True, 'blue')
 
     gameover1 = font1.render("Press ESC", True, 'red')
     gameover = font1.render("ИГРА ОКОНЧЕНА", True, 'red')
