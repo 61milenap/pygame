@@ -9,6 +9,7 @@ class Tetris:
     y = 60
     cell_size = 20
     block = None
+    high_score = 0
 
     def __init__(self, height, width):
         self.height = height
@@ -67,8 +68,7 @@ class Tetris:
         for i in range(4):
             for j in range(4):
                 if i * 4 + j in self.block.image():
-                    self.board[i + self.block.y][j +
-                                                 self.block.x] = self.block.color
+                    self.board[i + self.block.y][j + self.block.x] = self.block.color
         self.break_lines()
         self.new_block()
         if self.intersects():

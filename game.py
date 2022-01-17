@@ -92,8 +92,18 @@ def start_screen():
         clock.tick(FPS)
 
 
-start_screen()
+def max_score(score):
+    hisc = open("rezultat.txt", "r")
+    highscore = hisc.read()
+    hisc.close
+    high_score = int(highscore)
+    if game.score > high_score:
+        hisc = open("rezultat.txt", "w")
+        hisc.write(str(game.score))
+        hisc.close
+        high_score = game.score
 
+start_screen()
 
 running = True
 game = Tetris(20, 10)
@@ -152,24 +162,31 @@ while running:
                 if p in game.block.image():
                     pygame.draw.rect(screen, colors_block[game.block.color],
                                      [game.x + game.cell_size * (j + game.block.x) + 1,
-                                      game.y + game.cell_size *
-                                      (i + game.block.y) + 1,
+                                      game.y + game.cell_size * (i + game.block.y) + 1,
                                       game.cell_size - 2, game.cell_size - 2])
 
     font = pygame.font.SysFont('cambria', 25, True, False)
     font1 = pygame.font.SysFont('cambria', 35, True, False)
-    font2 = pygame.font.SysFont('cambria', 25, False, True)
+    font4 = pygame.font.SysFont('cambria', 45, True, False)
+
+    hisc = open("rezultat.txt", "r")
+    highscore = hisc.read()
+    hisc.close
+    high_score = int(highscore)
 
     text = font.render("СЧЁТ " + str(game.score), True, 'red')
-    text2 = font2.render("СЧЁ " + str(game.score), True, 'blue')
+    text2 = font.render("РЕКОРД" + ' '+ str(high_score), True, 'red')
 
     gameover1 = font1.render("Press ESC", True, 'red')
     gameover = font1.render("ИГРА ОКОНЧЕНА", True, 'red')
 
     screen.blit(text, [0, 0])
+    screen.blit(text2, [0, 25])
     if game.poss == "ИГРА ОКОНЧЕНА":
         screen.blit(gameover, [20, 200])
         screen.blit(gameover1, [25, 265])
+        max_score(game.score)
+
 
     pygame.display.flip()
     clock.tick(FPS)
