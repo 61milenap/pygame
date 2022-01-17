@@ -103,6 +103,7 @@ def max_score(score):
         hisc.close
         high_score = game.score
 
+
 start_screen()
 
 running = True
@@ -162,7 +163,8 @@ while running:
                 if p in game.block.image():
                     pygame.draw.rect(screen, colors_block[game.block.color],
                                      [game.x + game.cell_size * (j + game.block.x) + 1,
-                                      game.y + game.cell_size * (i + game.block.y) + 1,
+                                      game.y + game.cell_size *
+                                      (i + game.block.y) + 1,
                                       game.cell_size - 2, game.cell_size - 2])
 
     font = pygame.font.SysFont('cambria', 25, True, False)
@@ -175,7 +177,7 @@ while running:
     high_score = int(highscore)
 
     text = font.render("СЧЁТ " + str(game.score), True, 'red')
-    text2 = font.render("РЕКОРД" + ' '+ str(high_score), True, 'red')
+    text2 = font.render("РЕКОРД" + ' ' + str(high_score), True, 'red')
 
     gameover1 = font1.render("Press ESC", True, 'red')
     gameover = font1.render("ИГРА ОКОНЧЕНА", True, 'red')
@@ -186,7 +188,6 @@ while running:
         screen.blit(gameover, [20, 200])
         screen.blit(gameover1, [25, 265])
         max_score(game.score)
-
 
     pygame.display.flip()
     clock.tick(FPS)
